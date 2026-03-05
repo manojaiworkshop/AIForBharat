@@ -68,14 +68,61 @@ Retail teams struggle with fragmented data, delayed insights, stockouts, oversto
 - Approval workflow and impact simulation
 - LLM-powered explanation panel for each recommendation
 
-## 11) Success Metrics
+## 11) Process Flow Diagram
+```mermaid
+flowchart LR
+	A[Sales / Inventory / Competitor Data] --> B[FastAPI Ingestion]
+	B --> C[Spark Feature Engineering]
+	C --> D[ML Models: Forecast / Pricing / Anomaly]
+	D --> E[LangGraph Agent Workflow]
+	E --> F[Supervisor Agent Final Plan]
+	F --> G[Socket.IO Live Updates]
+	G --> H[React Command Center]
+	H --> I{Human Approval?}
+	I -->|Approve| J[Decision Execution]
+	I -->|Reject| K[Feedback + Audit Trail]
+	J --> K
+	K --> L[Redis + Decision History]
+```
+
+## 12) Architecture Diagram
+```mermaid
+flowchart TB
+	subgraph UI[Frontend]
+		R1[React + Tailwind Dashboard]
+	end
+
+	subgraph API[Backend]
+		F1[FastAPI APIs]
+		F2[LangGraph Orchestrator]
+		F3[LLM Reasoning Service]
+		F4[Policy / Risk Guardrails]
+	end
+
+	subgraph DATA[Data & Compute]
+		S1[Spark ETL + Feature Jobs]
+		M1[ML Models]
+		D1[(Redis Cache / PubSub / Session)]
+	end
+
+	R1 <-->|REST + Socket.IO| F1
+	F1 --> F2
+	F2 --> F3
+	F2 --> F4
+	F1 <--> D1
+	F2 --> M1
+	S1 --> M1
+	S1 --> D1
+```
+
+## 13) Success Metrics
 - Forecast accuracy (MAPE) improvement vs baseline
 - Estimated margin uplift (%)
 - Reduction in projected stockouts (%)
 - Decision turnaround time
 - User action completion rate
 
-## 12) Out of Scope (MVP)
+## 14) Out of Scope (MVP)
 - Direct writeback to ERP/WMS in production
 - Advanced multi-language localization
 - Custom ML training UI
