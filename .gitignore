@@ -1,1 +1,47 @@
 AgenticDocs/
+
+# ── Python ──────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Testing
+.pytest_cache/
+
+# Environment / secrets
+.env
+.env.*
+.env.local
+.env.*.local
+
+# AWS SAM build output
+.aws-sam/
+
+# Build artifacts
+*.zip
+dist/
+build/
+
+# ── Node / Next.js ───────────────────────────────
+node_modules/
+.next/
+out/
+.vercel/
+tsconfig.tsbuildinfo
+
+# ── Accidental command-output files ─────────────
+backend-serverless/cloudformation*
+backend-serverless/iam list-*
+backend-serverless/ReadCommand
+frontend-nextjs/dynamodb*
+frontend-nextjs/Traceback*
+

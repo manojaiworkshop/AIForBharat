@@ -1,0 +1,8 @@
+{
+  "httpMethod": "POST",
+  "path": "/chat",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": "{\"message\": \"Hello, what can you do?\", \"conversation_id\": \"test-123\", \"history\": []}"
+}

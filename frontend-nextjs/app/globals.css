@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Dark theme (default) ───────────────────────────────── */
+:root {
+  --sidebar-bg:   #171717;
+  --main-bg:      #212121;
+  --surface:      #2f2f2f;
+  --surface-hover:#383838;
+  --border:       #3d3d3d;
+  --text:         #ececec;
+  --text-muted:   #a0a0a0;
+  --text-faint:   #606060;
+  --accent:       #2A93D5;
+  --accent-hover: #1a7ab8;
+  --user-bubble:  #2f2f2f;
+  --toggle-bg:    #3d3d3d;
+  --scrollbar:    #3d3d3d;
+  --shadow:       0 8px 32px rgba(0,0,0,0.4);
+  /* table-specific (dark) */
+  --table-bg:        #1e2026;
+  --table-header-bg: #16181d;
+  --table-row-hover: #2a2d35;
+  --table-border:    #2e3138;
+  --table-divider:   #404554;
+  --table-card-bg:   #1e2026;
+  --table-footer-bg: #16181d;
+}
+
+/* ─── Light theme ─────────────────────────────────────────── */
+[data-theme="light"] {
+  --sidebar-bg:   #ffffff;
+  --main-bg:      #f0f2f5;
+  --surface:      #ffffff;
+  --surface-hover:#f5f7fa;
+  --border:       #e8eaed;
+  --text:         #111827;
+  --text-muted:   #4b5563;
+  --text-faint:   #9ca3af;
+  --accent:       #2A93D5;
+  --accent-hover: #1a7ab8;
+  --user-bubble:  #e8f4fd;
+  --toggle-bg:    #e5e7eb;
+  --scrollbar:    #d1d5db;
+  --shadow:       0 4px 24px rgba(0,0,0,0.06);
+  /* table-specific */
+  --table-bg:        #ffffff;
+  --table-header-bg: #f8fafc;
+  --table-row-hover: #f0f7ff;
+  --table-border:    #e8eaed;
+  --table-divider:   #c8d0da;
+  --table-card-bg:   #ffffff;
+  --table-footer-bg: #f8fafc;
+}
+
+/* ─── Base ────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--main-bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* ─── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--scrollbar); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-faint); }
+
+/* ─── Theme Toggle ────────────────────────────────────────── */
+.toggle-track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 52px;
+  height: 28px;
+  background: var(--toggle-bg);
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  padding: 0 5px;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+.toggle-icon { font-size: 12px; line-height: 1; z-index: 1; user-select: none; }
+.toggle-thumb {
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: transform 0.25s cubic-bezier(0.4,0,0.2,1);
+  z-index: 2;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+[data-theme="light"] .toggle-thumb { transform: translateX(24px); }
+
+/* ─── Textarea auto-grow ──────────────────────────────────── */
+textarea { resize: none; overflow-y: hidden; }
+textarea:focus { outline: none; }
+
+/* ─── Markdown table styling ─────────────────────────────── */
+.md-table-wrapper tbody tr:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.04);
+}
+.md-table-wrapper tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.09);
+}
+.md-table-wrapper tbody tr:hover {
+  background: rgba(42, 147, 213, 0.12) !important;
+  transition: background 0.15s;
+}
+.md-table-wrapper th:last-child,
+.md-table-wrapper td:last-child {
+  border-right: none;
+}
+
+[data-theme="light"] .md-table-wrapper tbody tr:nth-child(odd) {
+  background: rgba(0, 0, 0, 0.02);
+}
+[data-theme="light"] .md-table-wrapper tbody tr:nth-child(even) {
+  background: rgba(42, 147, 213, 0.06);
+}
+[data-theme="light"] .md-table-wrapper tbody tr:hover {
+  background: rgba(42, 147, 213, 0.10) !important;
+}
+[data-theme="light"] .md-table-wrapper {
+  border-color: rgba(0, 0, 0, 0.14) !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07) !important;
+}
+[data-theme="light"] .md-table-wrapper thead {
+  background: linear-gradient(90deg, rgba(42,147,213,0.12) 0%, rgba(42,147,213,0.06) 100%) !important;
+  border-bottom-color: rgba(0,0,0,0.10) !important;
+}
+[data-theme="light"] .md-table-wrapper tr {
+  border-bottom-color: rgba(0,0,0,0.07) !important;
+}
+[data-theme="light"] .md-table-wrapper th,
+[data-theme="light"] .md-table-wrapper td {
+  border-right-color: rgba(0,0,0,0.07) !important;
+}
+
